@@ -43,6 +43,24 @@ class Atividades(Base):
         db_sesion.delete(self)
         db_sesion.commit()
 
+class Usuarios(Base):
+    __tablename__="usuarios"
+    id = Column(Integer, primary_key=True)
+    login = Column(String(15), unique=True)
+    senha = Column(String(20))
+
+    def __repr__(self):
+        return '<Usuario {}>'.format(self.login)
+
+    def save(self):
+        db_sesion.add(self)
+        db_sesion.commit()
+
+    def delte(self):
+        db_sesion.delete(self)
+        db_session.commit()
+
+
 # Comando para criação do banco de dados
 def init_db():
     Base.metadata.create_all(bind=engine)
